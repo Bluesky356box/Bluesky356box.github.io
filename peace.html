@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>和平倡议 - 国际冲突研究中心</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: '微软雅黑', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .site-header {
+            padding: 15px 0;
+            background-color: #000;
+        }
+        
+        .initiative-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .initiative-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .initiative-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .initiative-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* 3D展示区样式 */
+        .showcase {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+        
+        .showcase-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .showcase-panel {
+            position: absolute;
+            width: 400px;
+            height: 450px;
+            left: calc(50% - 200px); /* 居中 */
+            background-color: rgba(73, 69, 69, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.8s ease;
+            transform-origin: center;
+            opacity: 0;
+            z-index: 0;
+            transform: scale(0.8) translateX(100%);
+        }
+        
+        .showcase-panel.visible {
+            opacity: 1;
+            z-index: 5;
+            transform: scale(1) translateX(0);
+        }
+        
+        .showcase-panel.previous {
+            opacity: 0.7;
+            z-index: 4;
+            transform: scale(0.85) translateX(-75%);
+        }
+        
+        .showcase-panel.following {
+            opacity: 0.7;
+            z-index: 4;
+            transform: scale(0.85) translateX(75%);
+        }
+        
+        .showcase-panel.far-previous {
+            opacity: 0.3;
+            z-index: 3;
+            transform: scale(0.7) translateX(-150%);
+        }
+        
+        .showcase-panel.far-following {
+            opacity: 0.3;
+            z-index: 3;
+            transform: scale(0.7) translateX(150%);
+        }
+        
+        .showcase-panel:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+        }
+        
+        .panel-media {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .panel-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .showcase-panel:hover .panel-media img {
+            transform: scale(1.05);
+        }
+        
+        .panel-body {
+            padding: 20px 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .panel-body p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 15px;
+        }
+        
+        .progress-indicator {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: auto;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(to right, #ff6b6b, #1e90ff);
+            border-radius: 2px;
+        }
+        
+        .showcase-controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .control-button {
+            background-color: rgba(73, 69, 69, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .control-button:hover {
+            background-color: rgba(100, 100, 100, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .site-footer {
+            background-color: #111;
+            margin-top: 60px;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .showcase {
+                height: 450px;
+            }
+            
+            .showcase-panel {
+                width: 300px;
+                height: 400px;
+                left: calc(50% - 150px);
+            }
+            
+            .panel-media {
+                height: 180px;
+            }
+            
+            .panel-body h3 {
+                font-size: 1.3rem;
+            }
+            
+            .initiative-header h1 {
+                font-size: 2rem;
+            }
+            
+            .showcase-panel.previous,
+            .showcase-panel.following {
+                transform: scale(0.85) translateX(0);
+                opacity: 0;
+            }
+            
+            .showcase-panel.far-previous,
+            .showcase-panel.far-following {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-navigation">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html" class="nav-link">主站</a></li>
+                <li class="nav-item"><a href="conflict.html" class="nav-link">冲突背景</a></li>
+                <li class="nav-item"><a href="community.html" class="nav-link">社区讨论</a></li>
+                <li class="nav-item"><a href="peace.html" class="nav-link current">和平倡议</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="initiative-container">
+        <div class="initiative-header">
+            <h1>和平倡议</h1>
+            <p>战争的阴影下，无数生命因冲突而失去，家园被摧毁，未来被打断。让我们共同呼吁和平，为了每一个因战争而破碎的生命与家庭，为了人类共同的未来。</p>
+        </div>
+        
+        <div class="showcase">
+            <div class="showcase-inner" id="showcase-wrapper">
+                <div class="showcase-panel" id="panel1">
+                    <div class="panel-media">
+                        <img src="./1.png" alt="和平倡议">
+                    </div>
+                    <div class="panel-body">
+                        <h3>对话与和平</h3>
+                        <p>战争从来不是解决问题的唯一途径。历史经验表明，即使在最深刻的分歧中，对话也能成为通向和平的桥梁。我们呼吁各方放下武器，回到谈判桌前，用外交手段而非战场上的伤亡来解决分歧。</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 20%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-panel" id="panel2">
+                    <div class="panel-media">
+                        <img src="./2.png" alt="人道主义救援">
+                    </div>
+                    <div class="panel-body">
+                        <h3>人道主义援助</h3>
+                        <p>冲突区的平民正面临严重的人道主义危机。无论政治立场如何，我们都应关注那些处于战争阴影下的普通人。他们需要食物、药品、避难所和安全。国际社会应加大对平民的人道主义援助力度。</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-panel" id="panel3">
+                    <div class="panel-media">
+                        <img src="./3.png" alt="儿童保护">
+                    </div>
+                    <div class="panel-body">
+                        <h3>保护儿童</h3>
+                        <p>战争中最无辜的受害者是儿童。他们的教育被中断，身心健康受到威胁，甚至失去生命。我们必须特别关注战争对儿童的影响，确保他们得到保护，并为战后儿童心理创伤的修复提供支持。</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-panel" id="panel4">
+                    <div class="panel-media">
+                        <img src="./4.png" alt="国际合作">
+                    </div>
+                    <div class="panel-body">
+                        <h3>国际合作</h3>
+                        <p>和平不仅是某一方的责任，而是国际社会共同的使命。我们呼吁各国政府、国际组织和民间社会加强合作，共同为停止冲突、促进和解创造条件，重建被战争摧毁的社区。</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-panel" id="panel5">
+                    <div class="panel-media">
+                        <img src="./5.png" alt="重建家园">
+                    </div>
+                    <div class="panel-body">
+                        <h3>重建家园</h3>
+                        <p>当战争的硝烟散去，摆在人们面前的是重建的艰巨任务。学校、医院、住宅和基础设施需要重建，但更重要的是心灵的重建。国际社会应支持战后重建，帮助人们重拾希望，重建家园。</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="showcase-controls">
+            <button id="prev-control" class="control-button">&lt;</button>
+            <button id="next-control" class="control-button">&gt;</button>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="wrapper">
+            <p>&copy; 2024 国际冲突研究中心。所有内容仅供学术研究，我们努力保持客观与公正。</p>
+            <div class="connect-links">
+                <a href="#" class="connect-link">分享内容</a>
+                <a href="#" class="connect-link">订阅资讯</a>
+                <a href="#" class="connect-link">联系我们</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 3D展示功能 - 中心旋转模式
+        document.addEventListener('DOMContentLoaded', function() {
+            const panels = document.querySelectorAll('.showcase-panel');
+            const prevBtn = document.getElementById('prev-control');
+            const nextBtn = document.getElementById('next-control');
+            const totalPanels = panels.length;
+            
+            // 初始化面板位置
+            let activeIndex = 0;
+            updateShowcase();
+            
+            // 自动切换
+            let autoRotate = setInterval(showNextPanel, 5000);
+            
+            function updateShowcase() {
+                for (let i = 0; i < totalPanels; i++) {
+                    panels[i].className = 'showcase-panel'; // 重置所有类
+                    
+                    // 计算每个面板的相对位置
+                    let relativePosition = (i - activeIndex) % totalPanels;
+                    if (relativePosition < 0) relativePosition += totalPanels;
+                    
+                    // 添加对应的类
+                    if (relativePosition === 0) {
+                        panels[i].classList.add('visible');
+                    } else if (relativePosition === 1) {
+                        panels[i].classList.add('following');
+                    } else if (relativePosition === totalPanels - 1) {
+                        panels[i].classList.add('previous');
+                    } else if (relativePosition === 2) {
+                        panels[i].classList.add('far-following');
+                    } else if (relativePosition === totalPanels - 2) {
+                        panels[i].classList.add('far-previous');
+                    }
+                }
+            }
+            
+            function showNextPanel() {
+                activeIndex = (activeIndex + 1) % totalPanels;
+                updateShowcase();
+                resetAutoRotate();
+            }
+            
+            function showPrevPanel() {
+                activeIndex = (activeIndex - 1 + totalPanels) % totalPanels;
+                updateShowcase();
+                resetAutoRotate();
+            }
+            
+            function resetAutoRotate() {
+                clearInterval(autoRotate);
+                autoRotate = setInterval(showNextPanel, 5000);
+            }
+            
+            // 添加按钮事件
+            nextBtn.addEventListener('click', showNextPanel);
+            prevBtn.addEventListener('click', showPrevPanel);
+            
+            // 触摸屏支持
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            document.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGesture();
+            }, false);
+            
+            function handleGesture() {
+                if (touchEndX < touchStartX - 50) {
+                    showNextPanel();  // 向左滑动，下一个
+                }
+                if (touchEndX > touchStartX + 50) {
+                    showPrevPanel();  // 向右滑动，上一个
+                }
+            }
+            
+            // 点击面板激活
+            panels.forEach((panel, index) => {
+                panel.addEventListener('click', function() {
+                    if (index !== activeIndex) {
+                        activeIndex = index;
+                        updateShowcase();
+                        resetAutoRotate();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
