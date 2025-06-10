@@ -1,0 +1,184 @@
+/* 全局样式设置 */
+html, body, div, span, h1, h2, h3, p, a, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: '微软雅黑', 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* 头部导航 */
+.site-header {
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    background-color: #000;
+    padding: 15px 0;
+}
+
+.main-navigation {
+    width: 100%;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-item {
+    margin: 0 20px;
+}
+
+.nav-link {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.current {
+    background-color: #333;
+}
+
+/* 横幅区域 */
+.banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    text-align: center;
+    background-image: url('./giphy.gif');
+    background-size: cover;
+    background-position: center;
+}
+
+.banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.banner-text {
+    position: relative;
+    z-index: 10;
+    color: #fff;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.banner-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+
+.button {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+/* 主要区块样式 */
+.content-section {
+    padding: 60px 0;
+}
+
+.section-heading {
+    position: relative;
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+}
+
+.content-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.content-box p {
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+/* 页脚部分 */
+.site-footer {
+    background-color: #222;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.site-footer .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connect-links {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.connect-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.connect-link:hover {
+    color: #aaa;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .banner-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-heading {
+        font-size: 1.8rem;
+    }
+    
+    .content-section {
+        padding: 40px 0;
+    }
+} 
