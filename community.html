@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区讨论 - 国际冲突研究中心</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .discussion-area {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feedback-form {
+            margin-bottom: 40px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .text-input, .textarea-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .textarea-input {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .feedback-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        
+        .feedback-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .author-name {
+            font-weight: 600;
+        }
+
+        .submit-date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .delete-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .updates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .update-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .update-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .update-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .publish-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .update-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .update-summary {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .view-more {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .view-more:hover {
+            text-decoration: underline;
+        }
+
+        /* 表单错误状态 */
+        .text-input.error, .textarea-input.error {
+            border-color: #e74c3c;
+            background-color: #fdf2f2;
+        }
+
+        /* 评论提交成功动画 */
+        .feedback-item.new-comment {
+            animation: slideIn 0.5s ease-out;
+            background-color: #f8f9fa;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 空评论状态 */
+        .no-comments {
+            color: #888;
+            text-align: center;
+            padding: 40px 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-navigation">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html" class="nav-link">主站</a></li>
+                <li class="nav-item"><a href="conflict.html" class="nav-link">冲突背景</a></li>
+                <li class="nav-item"><a href="community.html" class="nav-link current">社区讨论</a></li>
+                <li class="nav-item"><a href="peace.html" class="nav-link">和平倡议</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="banner" style="height: 300px;">
+        <div class="banner-text">
+            <h1>社区交流平台</h1>
+            <p>掌握最新资讯，分享您的观点</p>
+        </div>
+    </div>
+
+    <section class="content-section wrapper">
+        <h2 class="section-heading">最新动态</h2>
+        <div class="updates-container">
+            <div class="update-card">
+                <div class="card-image">
+                    <img src="./1.png" alt="相关新闻图片">
+                </div>
+                <div class="card-body">
+                    <div class="publish-date">2024年5月15日</div>
+                    <h3 class="update-title">和平谈判新进展</h3>
+                    <p class="update-summary">国际调解人提出新的和平框架，双方代表将在第三国会面讨论可能的解决方案...</p>
+                    <a href="https://news.cnr.cn/sq/20241215/t20241215_527010050.shtml#:~:text=%E7%A4%BE%E7%A7%91%E9%99%A2%E4%BF%84%E7%BD%97%E6%96%AF%E4%B8%9C%E6%AC%A7%E4%B8%AD%E4%BA%9A%E7%A0%94%E7%A9%B6%E6%89%80%E6%89%80%E9%95%BF%E5%AD%99%E5%A3%AE%E5%BF%97%20%E6%8E%A5%E5%8F%97%E4%B8%AD%E5%A4%AE%E5%B9%BF%E6%92%AD%E7%94%B5%E8%A7%86%E6%80%BB%E5%8F%B0%E7%8E%AF%E7%90%83%E8%B5%84%E8%AE%AF%E5%B9%BF%E6%92%AD%E8%AE%B0%E8%80%85%E9%87%87%E8%AE%BF%E6%97%B6%E5%88%86%E6%9E%90%E8%AE%A4%E4%B8%BA%EF%BC%8C%E4%BF%84%E4%B9%8C%E5%8F%8C%E6%96%B9%E5%9C%A8%E5%AF%B9%E8%AF%9D%E8%B0%88%E5%88%A4%E9%97%AE%E9%A2%98%E4%B8%8A%E7%9A%84%E7%AB%8B%E5%9C%BA%E5%B9%B6%E6%9C%AA%E5%8F%91%E7%94%9F%E5%8F%98%E5%8C%96%EF%BC%8C%E8%BF%91%E6%9C%9F%E4%B8%BE%E8%A1%8C%E8%B0%88%E5%88%A4%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7%E5%BE%88%E4%BD%8E%E3%80%82,%E8%99%BD%E7%84%B6%E4%BF%84%E4%B9%8C%E5%8F%8C%E6%96%B9%E9%83%BD%E5%AF%B9%E8%B0%88%E5%88%A4%E6%8C%81%E5%BC%80%E6%94%BE%E6%80%81%E5%BA%A6%EF%BC%8C%E4%BD%86%E5%AE%9E%E9%99%85%E4%B8%8A%E8%BF%98%E6%98%AF%E5%9D%9A%E6%8C%81%E5%8E%9F%E6%9D%A5%E7%9A%84%E7%AB%8B%E5%9C%BA%EF%BC%8C%E5%8F%8C%E6%96%B9%E9%83%BD%E4%B8%8D%E5%87%86%E5%A4%87%E4%BD%9C%E5%87%BA%E5%A6%A5%E5%8D%8F%E5%92%8C%E8%AE%A9%E6%AD%A5%EF%BC%8C%E8%BF%98%E6%B2%A1%E6%9C%89%E5%81%9A%E5%A5%BD%E8%BF%9B%E8%A1%8C%E8%B0%88%E5%88%A4%E7%9A%84%E5%87%86%E5%A4%87%E3%80%82%20%E5%9B%A0%E6%AD%A4%EF%BC%8C%E7%9F%AD%E6%9C%9F%E5%86%85%E4%B8%BE%E8%A1%8C%E8%B0%88%E5%88%A4%E6%88%96%E8%BF%9B%E8%A1%8C%E5%AE%9E%E8%B4%A8%E6%80%A7%E6%8E%A5%E8%A7%A6%EF%BC%8C%E8%BF%99%E7%A7%8D%E5%8F%AF%E8%83%BD%E6%80%A7%E5%9F%BA%E6%9C%AC%E4%B8%8A%E4%B8%8D%E5%AD%98%E5%9C%A8%E3%80%82" class="view-more">查看详情</a>
+                </div>
+            </div>
+            <div class="update-card">
+                <div class="card-image">
+                    <img src="./2.png" alt="援助活动图片">
+                </div>
+                <div class="card-body">
+                    <div class="publish-date">2024年5月12日</div>
+                    <h3 class="update-title">国际人道主义援助增加</h3>
+                    <p class="update-summary">多国承诺提供更多人道主义援助，帮助受战争影响的平民，包括食品、医疗和住所支持...</p>
+                    <a href="https://www.sohu.com/a/898700281_121629985" class="view-more">查看详情</a>
+                </div>
+            </div>
+            <div class="update-card">
+                <div class="card-image">
+                    <img src="./3.png" alt="外交会议图片">
+                </div>
+                <div class="card-body">
+                    <div class="publish-date">2024年5月8日</div>
+                    <h3 class="update-title">联合国安理会召开紧急会议</h3>
+                    <p class="update-summary">联合国安理会召开紧急会议讨论局势升级问题，多国外交官呼吁立即停火...</p>
+                    <a href="https://www.ungeneva.org/zh/news-media/news/2024/09/97351/anlihuizhaokaihuiyi-taolunwukelanzuixinjushi#:~:text=%E8%81%94%E5%90%88%E5%9B%BD%E7%B4%A7%E6%80%A5%E6%95%91%E6%B5%8E%E5%89%AF%E5%8D%8F%E8%B0%83%E5%91%98%E5%A7%86%E8%8B%8F%E4%BA%9A%E5%90%91%E5%AE%89%E7%90%86%E4%BC%9A%E4%BC%9A%E8%AE%AE%E9%80%9A%E6%8A%A5%E4%B9%8C%E5%85%8B%E5%85%B0%E7%BB%B4%E6%8A%A4%E5%92%8C%E5%B9%B3%E4%B8%8E%E5%AE%89%E5%85%A8%E7%9A%84%E6%83%85%E5%86%B5%E3%80%82%20%E5%AE%89%E7%90%86%E4%BC%9A%E5%91%A8%E4%BA%8C%E5%8F%AC%E5%BC%80%E4%BC%9A%E8%AE%AE%E8%AE%A8%E8%AE%BA%E4%B9%8C%E5%85%8B%E5%85%B0%E7%9A%84%E6%9C%80%E6%96%B0%E5%B1%80%E5%8A%BF%E3%80%82,%E6%AD%A4%E6%AC%A1%E4%BC%9A%E8%AE%AE%E6%98%AF%E5%9C%A8%E4%B9%8C%E5%85%8B%E5%85%B0%E6%8A%A5%E5%91%8A%E7%A7%B0%EF%BC%8C%E4%BF%84%E7%BD%97%E6%96%AF%E7%9A%84%E8%A2%AD%E5%87%BB%E5%B7%B2%E5%9C%A8%E5%9F%BA%E8%BE%85%E3%80%81%E5%93%88%E5%B0%94%E7%A7%91%E5%A4%AB%E5%92%8C%E8%8B%8F%E6%A2%85%E7%AD%89%E5%9F%8E%E5%B8%82%E9%80%A0%E6%88%90%E5%A4%A7%E9%87%8F%E5%B9%B3%E6%B0%91%E4%BC%A4%E4%BA%A1%E5%92%8C%E6%B0%91%E7%94%A8%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%8F%97%E5%88%B0%E5%B9%BF%E6%B3%9B%E7%A0%B4%E5%9D%8F%E4%B9%8B%E5%90%8E%E5%8F%AC%E5%BC%80%E7%9A%84%E3%80%82%20%E8%81%94%E5%90%88%E5%9B%BD%E8%B4%9F%E8%B4%A3%E4%BA%BA%E9%81%93%E4%B8%BB%E4%B9%89%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BB%A3%E7%90%86%E5%89%AF%E7%A7%98%E4%B9%A6%E9%95%BF%E5%A7%86%E8%8B%8F%E4%BA%9A%E5%9C%A8%E4%BC%9A%E8%AE%AE%E5%BC%80%E5%A7%8B%E6%97%B6%E5%90%91%E5%AE%89%E7%90%86%E4%BC%9A%E6%88%90%E5%91%98%E9%80%9A%E6%8A%A5%E4%BA%86%E6%9C%80%E6%96%B0%E4%BA%BA%E9%81%93%E4%B8%BB%E4%B9%89%E5%B1%80%E5%8A%BF%E3%80%82%20%E5%A7%86%E8%8B%8F%E4%BA%9A%E5%90%91%E5%AE%89%E7%90%86%E4%BC%9A%E8%A1%A8%E7%A4%BA%EF%BC%8C%E6%88%98%E4%BA%89%E5%8D%87%E7%BA%A7%E5%B7%B2%E6%9C%89%E4%B8%A4%E5%B9%B4%E5%8D%8A%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B1%80%E5%8A%BF%E4%BB%8D%E5%9C%A8%E7%BB%A7%E7%BB%AD%E6%81%B6%E5%8C%96%E3%80%82" class="view-more">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section wrapper">
+        <h2 class="section-heading">参与讨论</h2>
+        <div class="discussion-area">
+            <form class="feedback-form">
+                <div class="input-group">
+                    <label class="input-label" for="userName">您的姓名</label>
+                    <input type="text" id="userName" class="text-input" required>
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="userEmail">电子邮箱</label>
+                    <input type="email" id="userEmail" class="text-input" required>
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="userFeedback">您的观点</label>
+                    <textarea id="userFeedback" class="textarea-input" required></textarea>
+                </div>
+                <button type="submit" class="button">提交评论</button>
+            </form>
+            
+            <h3>已有评论</h3>
+            <div id="commentsContainer">
+                <!-- 评论将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="wrapper">
+            <p>&copy; 2024 国际冲突研究中心。所有内容仅供学术研究，我们努力保持客观与公正。</p>
+            <div class="connect-links">
+                <a href="#" class="connect-link">分享内容</a>
+                <a href="#" class="connect-link">订阅资讯</a>
+                <a href="#" class="connect-link">联系我们</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html> 

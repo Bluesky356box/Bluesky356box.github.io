@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄乌战争 - 俄乌战争调研信息</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+        
+        header {
+            padding: 15px 0;
+            background-color: #000;
+        }
+        
+        .war-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .content-box {
+            display: flex;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-container {
+            flex: 1;
+            border-radius: 25px 0 0 25px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .image-container::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0) 70%, rgba(42,36,35,0.3) 100%);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 400px;
+        }
+        
+        .text-container {
+            flex: 1;
+            padding: 40px;
+            background-color: #2A2423;
+            border-radius: 0 25px 25px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .text-container h2 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .text-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .text-container p {
+            margin-bottom: 15px;
+            font-size: 15px;
+            text-align: justify;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .nav-button {
+            background-color: #4D4343;
+            border-radius: 15px;
+            padding: 18px 15px;
+            width: 22%;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-button h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: normal;
+            position: relative;
+        }
+        
+        footer {
+            background-color: #111;
+            margin-top: 60px;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .content-box {
+                flex-direction: column;
+            }
+            
+            .image-container {
+                border-radius: 25px 25px 0 0;
+            }
+            
+            .image-container::after {
+                background: linear-gradient(0deg, rgba(42,36,35,0.3) 0%, rgba(0,0,0,0) 30%);
+            }
+            
+            .text-container {
+                border-radius: 0 0 25px 25px;
+            }
+            
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .nav-button {
+                width: 45%;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./index.html">首页</a></li>
+                <li><a href="background.html" class="active">俄乌战争</a></li>
+                <li><a href="latest-news.html">互动交流</a></li>
+                <li><a href="analysis.html">呼吁和平</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="war-container">
+        <div class="content-box" id="main-content">
+            <div class="image-container" id="image-area">
+                <img src="./4.png" alt="俄乌战争残骸" id="content-image">
+            </div>
+            <div class="text-container" id="text-area">
+                <h2 id="content-title">俄乌冲突概述</h2>
+                <div id="content-text">
+                    <p>俄乌冲突是21世纪欧洲最严重的军事对抗，始于2022年2月24日俄罗斯对乌克兰发起的全面入侵。这场被俄罗斯称为"特别军事行动"的冲突实际上是欧洲自二战以来最大规模的军事行动。</p>
+                    <p>冲突的根源可追溯至乌克兰与俄罗斯之间长期存在的地缘政治紧张关系，特别是乌克兰寻求加入欧盟和北约的意愿，以及2014年克里米亚被俄罗斯吞并后的紧张局势。</p>
+                    <p>战争已造成数万人死亡，数百万人流离失所，同时引发全球性的经济冲击，尤其是能源和粮食危机。国际社会对此反应不一，西方国家普遍支持乌克兰，对俄罗斯实施制裁；而其他一些国家则保持中立或支持俄罗斯。</p>
+                    <p>这场战争的持续不仅对直接参与方产生深远影响，也重塑了国际关系格局，挑战了战后建立的国际秩序与安全体系。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <div class="nav-button" id="intro" onclick="showContent('intro')">
+                <h3>战争简介</h3>
+            </div>
+            <div class="nav-button" id="casualties" onclick="showContent('casualties')">
+                <h3>伤亡人数</h3>
+            </div>
+            <div class="nav-button" id="impact" onclick="showContent('impact')">
+                <h3>影响</h3>
+            </div>
+            <div class="nav-button" id="warning" onclick="showContent('warning')">
+                <h3>警示</h3>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 俄乌战争调研信息。本网站内容仅供参考，我们致力于提供客观、公正的信息。</p>
+            <div class="social-links">
+                <a href="#">分享</a>
+                <a href="#">关注</a>
+                <a href="#">联系我们</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 内容数据
+        const contentData = {
+            'main': {
+                image: './4.png',
+                title: '俄乌冲突概述',
+                text: `
+                    <p>俄乌冲突是21世纪欧洲最严重的军事对抗，始于2022年2月24日俄罗斯对乌克兰发起的全面入侵。这场被俄罗斯称为"特别军事行动"的冲突实际上是欧洲自二战以来最大规模的军事行动。</p>
+                    <p>冲突的根源可追溯至乌克兰与俄罗斯之间长期存在的地缘政治紧张关系，特别是乌克兰寻求加入欧盟和北约的意愿，以及2014年克里米亚被俄罗斯吞并后的紧张局势。</p>
+                    <p>战争已造成数万人死亡，数百万人流离失所，同时引发全球性的经济冲击，尤其是能源和粮食危机。国际社会对此反应不一，西方国家普遍支持乌克兰，对俄罗斯实施制裁；而其他一些国家则保持中立或支持俄罗斯。</p>
+                    <p>这场战争的持续不仅对直接参与方产生深远影响，也重塑了国际关系格局，挑战了战后建立的国际秩序与安全体系。</p>
+                `
+            },
+            'intro': {
+                image: './5.png',
+                title: '战争简介',
+                text: `
+                    <p>俄乌战争爆发于2022年2月24日，当时俄罗斯军队从北、东、南三个方向对乌克兰发起进攻，包括从白俄罗斯境内、俄罗斯本土以及克里米亚半岛进军。</p>
+                    <p>俄罗斯总统普京将此次行动定性为"特别军事行动"，声称目标是乌克兰的"去纳粹化"和"去军事化"，保护顿巴斯地区的俄语居民，并阻止北约东扩对俄罗斯安全构成的威胁。</p>
+                    <p>乌克兰在总统泽连斯基领导下奋起抵抗，在西方国家的军事援助支持下，成功抵御了俄军对首都基辅的进攻。俄军随后转向乌克兰东部和南部地区，战线逐渐稳定。</p>
+                    <p>此次入侵被视为冷战结束以来对欧洲领土完整和主权原则的最严重挑战，引发了国际社会的强烈反应，包括对俄罗斯的前所未有的经济制裁和对乌克兰的大规模军事援助。</p>
+                `
+            },
+            'casualties': {
+                image: './6.png',
+                title: '伤亡人数',
+                text: `
+                    <p>战争造成的人员伤亡数字因信息不透明和战时宣传而难以准确统计，但联合国人权监测组织确认，至少有数千名平民在冲突中丧生，实际数字可能更高。</p>
+                    <p>军事人员方面，乌克兰和俄罗斯双方均有大量伤亡。根据西方情报机构的估计，俄军阵亡人数可能达到数万人，乌克兰军队也有相当规模的伤亡。</p>
+                    <p>联合国难民署报告，超过800万乌克兰人被迫逃往邻国，另有数百万人在国内流离失所，这是自二战以来欧洲最大规模的难民危机。</p>
+                    <p>除人员伤亡外，战争还对乌克兰城市和基础设施造成了严重破坏。住宅区、医院、学校、能源设施等民用基础设施遭到大规模轰炸，估计重建费用将达数千亿美元。</p>
+                `
+            },
+            'impact': {
+                image: './7.png',
+                title: '全球影响',
+                text: `
+                    <p>俄乌战争引发了全球性粮食危机。作为世界主要粮食出口国，乌克兰的小麦、玉米、葵花籽油等农产品出口受阻，导致全球粮价上涨，对依赖进口的中东和非洲国家影响尤为严重。</p>
+                    <p>能源市场同样受到重创。俄罗斯作为欧洲主要能源供应国，其天然气和石油供应因制裁面临限制，导致全球能源价格飙升，加剧了全球通胀压力。</p>
+                    <p>地缘政治格局发生显著变化。北约加强了在东欧的军事存在，芬兰和瑞典申请加入北约，结束长期中立政策。欧洲对俄罗斯能源依赖的风险被重新评估，能源多元化成为战略优先事项。</p>
+                    <p>国际秩序受到挑战，联合国等国际组织在预防和解决冲突方面的作用受到质疑。全球军费开支增加，许多国家重新评估其国防战略和军事准备。</p>
+                `
+            },
+            'warning': {
+                image: './8.png',
+                title: '历史警示',
+                text: `
+                    <p>俄乌战争向世界敲响警钟：即使在21世纪的信息时代，大规模军事冲突仍然可能爆发，和平不应被视为理所当然。在国际关系中，强权政治和武力使用仍是现实。</p>
+                    <p>这场冲突提醒我们，对话和外交是解决国际争端的唯一可持续途径。军事冲突带来的是巨大的人道主义灾难和长期创伤，对所有参与方都没有真正的赢家。</p>
+                    <p>历史表明，领土扩张和强制改变国际公认边界的行为，往往导致长期不稳定和更多冲突。尊重国家主权和领土完整是国际关系的基石，对维护世界和平至关重要。</p>
+                    <p>面对威胁，国际社会应加强合作与团结，共同维护以规则为基础的国际秩序。同时，我们必须认识到预防冲突的重要性，在危机升级前采取积极行动。</p>
+                `
+            }
+        };
+
+        // 切换内容函数
+        function showContent(contentType) {
+            const data = contentData[contentType];
+            
+            // 检查数据是否存在
+            if (!data) return;
+            
+            // 更新图片
+            document.getElementById('content-image').src = data.image;
+            
+            // 更新标题
+            document.getElementById('content-title').textContent = data.title;
+            
+            // 更新文字内容
+            document.getElementById('content-text').innerHTML = data.text;
+        }
+        
+        // 返回主内容的函数
+        function showMainContent() {
+            showContent('main');
+        }
+        
+        // 页面加载时设置事件监听器
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为导航栏上的首页链接添加事件
+            const homeLink = document.querySelector('nav a[href="index.html"]');
+            if (homeLink) {
+                homeLink.addEventListener('click', function(e) {
+                    if (window.location.pathname.includes('background.html')) {
+                        e.preventDefault();
+                        showMainContent();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

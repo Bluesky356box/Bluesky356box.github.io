@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>呼吁和平 - 俄乌战争调研信息</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            padding: 15px 0;
+            background-color: #000;
+        }
+        
+        .peace-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .peace-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .peace-intro h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .peace-intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* 3D轮播样式 - 修改为固定中心旋转 */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+        
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .carousel-card {
+            position: absolute;
+            width: 400px;
+            height: 450px;
+            left: calc(50% - 200px); /* 居中 */
+            background-color: rgba(73, 69, 69, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.8s ease;
+            transform-origin: center;
+            opacity: 0;
+            z-index: 0;
+            transform: scale(0.8) translateX(100%);
+        }
+        
+        .carousel-card.active {
+            opacity: 1;
+            z-index: 5;
+            transform: scale(1) translateX(0);
+        }
+        
+        .carousel-card.prev {
+            opacity: 0.7;
+            z-index: 4;
+            transform: scale(0.85) translateX(-75%);
+        }
+        
+        .carousel-card.next {
+            opacity: 0.7;
+            z-index: 4;
+            transform: scale(0.85) translateX(75%);
+        }
+        
+        .carousel-card.back {
+            opacity: 0.3;
+            z-index: 3;
+            transform: scale(0.7) translateX(-150%);
+        }
+        
+        .carousel-card.front {
+            opacity: 0.3;
+            z-index: 3;
+            transform: scale(0.7) translateX(150%);
+        }
+        
+        .carousel-card:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 20px 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .card-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: auto;
+        }
+        
+        .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(to right, #ff6b6b, #1e90ff);
+            border-radius: 2px;
+        }
+        
+        .carousel-nav {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .carousel-nav button {
+            background-color: rgba(73, 69, 69, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-nav button:hover {
+            background-color: rgba(100, 100, 100, 0.8);
+            transform: scale(1.1);
+        }
+        
+        footer {
+            background-color: #111;
+            margin-top: 60px;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .carousel-container {
+                height: 450px;
+            }
+            
+            .carousel-card {
+                width: 300px;
+                height: 400px;
+                left: calc(50% - 150px);
+            }
+            
+            .card-image {
+                height: 180px;
+            }
+            
+            .card-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .peace-intro h1 {
+                font-size: 2rem;
+            }
+            
+            .carousel-card.prev,
+            .carousel-card.next {
+                transform: scale(0.85) translateX(0);
+                opacity: 0;
+            }
+            
+            .carousel-card.back,
+            .carousel-card.front {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="background.html">俄乌战争</a></li>
+                <li><a href="latest-news.html">互动交流</a></li>
+                <li><a href="analysis.html" class="active">呼吁和平</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="peace-container">
+        <div class="peace-intro">
+            <h1>呼吁和平</h1>
+            <p>战争的阴影笼罩下，无数生命因冲突而失去，家园被摧毁，未来被打断。让我们共同呼吁和平，为了每一个因战争而破碎的生命与家庭，为了人类共同的未来。</p>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-wrapper" id="carousel">
+                <div class="carousel-card" id="card1">
+                    <div class="card-image">
+                        <img src="./1.png" alt="和平倡议">
+                    </div>
+                    <div class="card-content">
+                        <h3>对话与和平</h3>
+                        <p>战争从来不是解决问题的唯一途径。历史经验表明，即使在最深刻的分歧中，对话也能成为通向和平的桥梁。我们呼吁各方放下武器，回到谈判桌前，用外交手段而非战场上的伤亡来解决分歧。</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 20%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-card" id="card2">
+                    <div class="card-image">
+                        <img src="./2.png" alt="人道主义救援">
+                    </div>
+                    <div class="card-content">
+                        <h3>人道主义援助</h3>
+                        <p>冲突区的平民正面临严重的人道主义危机。无论政治立场如何，我们都应关注那些处于战争阴影下的普通人。他们需要食物、药品、避难所和安全。国际社会应加大对平民的人道主义援助力度。</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-card" id="card3">
+                    <div class="card-image">
+                        <img src="./3.png" alt="儿童保护">
+                    </div>
+                    <div class="card-content">
+                        <h3>保护儿童</h3>
+                        <p>战争中最无辜的受害者是儿童。他们的教育被中断，身心健康受到威胁，甚至失去生命。我们必须特别关注战争对儿童的影响，确保他们得到保护，并为战后儿童心理创伤的修复提供支持。</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-card" id="card4">
+                    <div class="card-image">
+                        <img src="./4.png" alt="国际合作">
+                    </div>
+                    <div class="card-content">
+                        <h3>国际合作</h3>
+                        <p>和平不仅是某一方的责任，而是国际社会共同的使命。我们呼吁各国政府、国际组织和民间社会加强合作，共同为停止冲突、促进和解创造条件，重建被战争摧毁的社区。</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-card" id="card5">
+                    <div class="card-image">
+                        <img src="./5.png" alt="重建家园">
+                    </div>
+                    <div class="card-content">
+                        <h3>重建家园</h3>
+                        <p>当战争的硝烟散去，摆在人们面前的是重建的艰巨任务。学校、医院、住宅和基础设施需要重建，但更重要的是心灵的重建。国际社会应支持战后重建，帮助人们重拾希望，重建家园。</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="carousel-nav">
+            <button id="prev-btn">&lt;</button>
+            <button id="next-btn">&gt;</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 俄乌战争调研信息。本网站内容仅供参考，我们致力于提供客观、公正的信息。</p>
+            <div class="social-links">
+                <a href="#">分享</a>
+                <a href="#">关注</a>
+                <a href="#">联系我们</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 修改后的3D轮播功能 - 固定中心旋转
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.carousel-card');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const totalCards = cards.length;
+            
+            // 初始化卡片位置
+            let currentIndex = 0;
+            updateCarousel();
+            
+            // 自动轮播
+            let autoplay = setInterval(nextSlide, 5000);
+            
+            function updateCarousel() {
+                for (let i = 0; i < totalCards; i++) {
+                    cards[i].className = 'carousel-card'; // 重置所有类
+                    
+                    // 计算每张卡片应该处于的位置
+                    let position = (i - currentIndex) % totalCards;
+                    if (position < 0) position += totalCards;
+                    
+                    // 添加相应的类
+                    if (position === 0) {
+                        cards[i].classList.add('active');
+                    } else if (position === 1) {
+                        cards[i].classList.add('next');
+                    } else if (position === totalCards - 1) {
+                        cards[i].classList.add('prev');
+                    } else if (position === 2) {
+                        cards[i].classList.add('front');
+                    } else if (position === totalCards - 2) {
+                        cards[i].classList.add('back');
+                    }
+                }
+            }
+            
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalCards;
+                updateCarousel();
+                resetAutoplay();
+            }
+            
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                updateCarousel();
+                resetAutoplay();
+            }
+            
+            function resetAutoplay() {
+                clearInterval(autoplay);
+                autoplay = setInterval(nextSlide, 5000);
+            }
+            
+            // 添加按钮事件监听
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // 移动端滑动支持
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            document.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    nextSlide();  // 向左滑动，下一张
+                }
+                if (touchEndX > touchStartX + 50) {
+                    prevSlide();  // 向右滑动，上一张
+                }
+            }
+            
+            // 点击卡片切换到该卡片
+            cards.forEach((card, index) => {
+                card.addEventListener('click', function() {
+                    if (index !== currentIndex) {
+                        currentIndex = index;
+                        updateCarousel();
+                        resetAutoplay();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

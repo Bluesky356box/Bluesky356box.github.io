@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冲突背景 - 国际冲突研究中心</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: '微软雅黑', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .site-header {
+            padding: 15px 0;
+            background-color: #000;
+        }
+        
+        .content-area {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .info-panel {
+            display: flex;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .panel-media {
+            flex: 1;
+            border-radius: 25px 0 0 25px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .panel-media::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0) 70%, rgba(42,36,35,0.3) 100%);
+        }
+        
+        .panel-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 400px;
+        }
+        
+        .panel-content {
+            flex: 1;
+            padding: 40px;
+            background-color: #2A2423;
+            border-radius: 0 25px 25px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .panel-content h2 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .panel-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .panel-content p {
+            margin-bottom: 15px;
+            font-size: 15px;
+            text-align: justify;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .tab-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .tab-button {
+            background-color: #4D4343;
+            border-radius: 15px;
+            padding: 18px 15px;
+            width: 22%;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab-button h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: normal;
+            position: relative;
+        }
+        
+        .site-footer {
+            background-color: #111;
+            margin-top: 60px;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .info-panel {
+                flex-direction: column;
+            }
+            
+            .panel-media {
+                border-radius: 25px 25px 0 0;
+            }
+            
+            .panel-media::after {
+                background: linear-gradient(0deg, rgba(42,36,35,0.3) 0%, rgba(0,0,0,0) 30%);
+            }
+            
+            .panel-content {
+                border-radius: 0 0 25px 25px;
+            }
+            
+            .tab-navigation {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .tab-button {
+                width: 45%;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-navigation">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="./index.html" class="nav-link">主站</a></li>
+                <li class="nav-item"><a href="conflict.html" class="nav-link current">冲突背景</a></li>
+                <li class="nav-item"><a href="community.html" class="nav-link">社区讨论</a></li>
+                <li class="nav-item"><a href="peace.html" class="nav-link">和平倡议</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="content-area">
+        <div class="info-panel" id="display-panel">
+            <div class="panel-media" id="display-media">
+                <img src="./4.png" alt="冲突现场" id="display-image">
+            </div>
+            <div class="panel-content" id="display-info">
+                <h2 id="display-heading">俄乌战争</h2>
+                <div id="display-text">
+                    <p>俄罗斯对乌克兰发动的大规模武装入侵，是二战后欧洲最严重的军事冲突。</p>
+                    <p>2014年克里米亚危机和顿巴斯战争是其前奏，全面入侵始于2022年2月24日，至今（2025年5月）仍在持续。</p>
+                    <p>进攻方： 俄罗斯联邦及其支持的乌克兰东部亲俄武装（如“顿涅茨克人民共和国”、“卢甘斯克人民共和国”，俄已单方面“并入”）。</p>
+                    <p>防御方： 乌克兰，获得以美国、欧盟、英国等西方国家为主的广泛军事、财政和人道主义援助。</p> 
+                    <p>其他： 白俄罗斯为俄军提供领土和后勤支持；国际雇佣兵参与双方作战；北约提供情报、训练和武器援助但未直接参战。</p>
+                    <p>这是一场深刻改变21世纪地缘政治格局的悲剧性冲突。它根植于复杂的历史纠葛、对立的地缘政治诉求和民族认同冲突。战争已造成巨大的人道主义灾难，冲击全球经济和安全秩序，并将持续对欧洲乃至世界产生深远影响。目前战事陷入消耗性僵局，其最终结局充满不确定性，但可以肯定的是，乌克兰人民为保卫国家主权和领土完整付出了巨大牺牲，而这场战争也暴露了国际秩序面临的严峻挑战。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-navigation">
+            <div class="tab-button" id="tab-intro" onclick="changeContent('intro')">
+                <h3>俄乌战争</h3>
+            </div>
+            <div class="tab-button" id="tab-damage" onclick="changeContent('damage')">
+                <h3>起因背景</h3>
+            </div>
+            <div class="tab-button" id="tab-effects" onclick="changeContent('effects')">
+                <h3>全面入侵</h3>
+            </div>
+            <div class="tab-button" id="tab-lessons" onclick="changeContent('lessons')">
+                <h3>影响</h3>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="wrapper">
+            <p>&copy; 2024 国际冲突研究中心。所有内容仅供学术研究，我们努力保持客观与公正。</p>
+            <div class="connect-links">
+                <a href="#" class="connect-link">分享内容</a>
+                <a href="#" class="connect-link">订阅资讯</a>
+                <a href="#" class="connect-link">联系我们</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 内容数据
+        const displayContent = {
+    
+            'intro': {
+                image: './5.png',
+                heading: '俄乌战争',
+                text: `
+                    <p>俄罗斯对乌克兰发动的大规模武装入侵，是二战后欧洲最严重的军事冲突。</p>
+                    <p>2014年克里米亚危机和顿巴斯战争是其前奏，全面入侵始于2022年2月24日，至今（2025年5月）仍在持续。</p>
+                    <p>进攻方： 俄罗斯联邦及其支持的乌克兰东部亲俄武装（如“顿涅茨克人民共和国”、“卢甘斯克人民共和国”，俄已单方面“并入”）。</p>
+                    <p>防御方： 乌克兰，获得以美国、欧盟、英国等西方国家为主的广泛军事、财政和人道主义援助。</p>
+                    <p>其他： 白俄罗斯为俄军提供领土和后勤支持；国际雇佣兵参与双方作战；北约提供情报、训练和武器援助但未直接参战。</p>
+                    <p>这是一场深刻改变21世纪地缘政治格局的悲剧性冲突。它根植于复杂的历史纠葛、对立的地缘政治诉求和民族认同冲突。战争已造成巨大的人道主义灾难，冲击全球经济和安全秩序，并将持续对欧洲乃至世界产生深远影响。目前战事陷入消耗性僵局，其最终结局充满不确定性，但可以肯定的是，乌克兰人民为保卫国家主权和领土完整付出了巨大牺牲，而这场战争也暴露了国际秩序面临的严峻挑战。</p>
+
+                `
+            },
+            'damage': {
+                image: './6.png',
+                heading: '起因背景',
+                text: `
+                    <p>冷战结束后北约东扩，俄罗斯视其为对自身安全的直接威胁，尤其反对乌克兰加入北约。乌克兰寻求加入欧盟和北约以保障安全和经济发展。</p>
+                    <p>2014年乌克兰亲俄总统亚努科维奇被罢免后，俄军占领并单方面“并入”克里米亚半岛。在乌克兰东部的顿涅茨克州和卢甘斯克州（合称顿巴斯），亲俄武装在俄支持下发动叛乱，宣布成立“人民共和国”，与乌政府军爆发持续8年的低强度冲突（至2022年2月），造成约1.4万人死亡。明斯克协议未能有效执行。</p>
+                    <p>2021年底至2022年初，俄罗斯要求北约提供具有法律约束力的安全保障，包括承诺永不接纳乌克兰、撤回在东欧的军事存在等，被西方拒绝。乌克兰坚持主权独立和选择盟友的权利。</p>
+
+                `
+            },
+            'effects': {
+                image: './7.png',
+                heading: '全面入侵',
+                text: `
+                    <p>2022年2月21日：俄承认“顿涅茨克人民共和国”和“卢甘斯克人民共和国”独立，并签署“友好互助条约”。</p>
+                    <p>2022年2月24日： 俄总统普京宣布发动“特别军事行动”，目标包括“去军事化”、“去纳粹化”和乌克兰“中立化”。俄军从北（白俄方向）、东（俄乌边境）、南（克里米亚）三路同时入侵乌克兰。</p>
+                    <p>2022年9月初：哈尔科夫大反攻。乌军在东北部哈尔科夫方向发动闪电突袭，迅速收复大片领土，俄军仓促撤退。</p>
+                    <p>2022年11月：收复赫尔松市。乌军在南线持续施压，俄军因后勤补给线被威胁，被迫撤出第聂伯河右岸（包括赫尔松市），退守左岸。这是俄军继基辅后第二次重大撤退。</p>
+                    <p>经过数月血战，俄军（主要依靠瓦格纳雇佣兵集团）于2023年5月占领已成废墟的巴赫穆特，但付出极高代价。</p>
+                    <p>2023年6月-10月：乌军获得西方主战坦克（豹2、挑战者2等）和装甲车援助后，在扎波罗热和顿涅茨克方向发动大规模反攻，目标是切断俄军在乌南的陆桥，分割其占领区。反攻遭遇俄军精心构筑的纵深雷区和坚固防线，进展缓慢且代价高昂，未能达成主要战略目标。</p>
+                    <p>2023年底至今：战争陷入僵持消耗阶段。俄军利用其相对更大的人口规模和战争经济转型，在局部地区（如顿涅茨克州的阿夫季夫卡）发动攻势，凭借火力和人力优势缓慢推进。乌军转为战略防御，重点是利用无人机（包括海上无人机）、远程精确打击（如袭击克里米亚目标）削弱俄后勤和军事潜力，并努力构建新的防御工事。西方援助（尤其是美国）的延迟和不确定性对乌军防御能力构成重大挑战。</p>
+
+                `
+            },
+            'lessons': {
+                image: './8.png',
+                heading: '影响',
+                text: `
+                    <p>伤亡惨重，造成数十万军人和平民伤亡（具体数字各方差异巨大，但无疑是二战后欧洲最惨烈）。超过千万乌克兰人流离失所，其中数百万沦为难民逃往欧洲邻国（如波兰、德国）。基础设施（能源、供水、医疗、学校）遭大规模破坏，尤其在交战区。</p>
+                    <p>经济冲击： 加剧全球供应链紧张和通货膨胀，拖累世界经济复苏。</p>
+                    <p>地缘重组： 重塑欧洲安全格局，促使芬兰、瑞典申请加入北约；强化了西方阵营的凝聚力（北约、欧盟）；迫使各国重新评估国防投入和能源安全。</p>
+                    <p>核风险： 俄方多次暗示可能使用战术核武器，引发国际社会对核冲突风险的严重担忧。</p>
+                    <p>能源危机： 欧洲天然气价格一度飙升，推动全球通胀，促使欧洲加速能源转型和多元化。</p>
+                    <p>粮食危机： 乌克兰是世界主要粮仓，战争初期黑海粮食出口受阻，推高全球粮价，威胁发展中国家粮食安全。后达成《黑海谷物倡议》（已失效）缓解部分压力，乌克兰开辟替代运输路线。</p>
+
+                `
+            }
+        };
+
+        // 切换内容函数
+        function changeContent(contentType) {
+            const data = displayContent[contentType];
+            
+            // 检查数据是否存在
+            if (!data) return;
+            
+            // 更新图片
+            document.getElementById('display-image').src = data.image;
+            
+            // 更新标题
+            document.getElementById('display-heading').textContent = data.heading;
+            
+            // 更新文字内容
+            document.getElementById('display-text').innerHTML = data.text;
+        }
+        
+        // 返回默认内容的函数
+        function resetContent() {
+            changeContent('default');
+        }
+        
+        // 页面加载时设置事件监听器
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为导航栏上的首页链接添加事件
+            const homeLink = document.querySelector('nav a[href="index.html"]');
+            if (homeLink) {
+                homeLink.addEventListener('click', function(e) {
+                    if (window.location.pathname.includes('conflict.html')) {
+                        e.preventDefault();
+                        resetContent();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
